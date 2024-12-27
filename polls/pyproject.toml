@@ -1,0 +1,36 @@
+[tool.black]
+max-line-length = 88
+target-version = ["py39"]  # Specify your Python version (e.g., py39 for Python 3.9)
+include = '\.pyi?$'
+exclude = '''
+/(
+    .git
+  | .mypy_cache
+  | .pytest_cache
+  | .tox
+  | .venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"  # Ensures compatibility with Black's style
+max-line_length = 88
+known_third_party = ["django", "requests"]  # Add third-party libraries used in your project
+known_first_party = ["my_project"]  # Replace "my_project" with your project's name
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.flake8]
+max-line-length = 88  # Match Black's line length
+extend-ignore = [
+    "E203",  # Whitespace before ':', handled differently by Black
+    "W503"   # Line break before a binary operator, preferred by Black
+]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "build",
+    "dist"
+]
